@@ -1,0 +1,92 @@
+@import url('./promo-second.css');
+@import url('./advantage.css');
+@import url('./header.css');
+@import url('./questions.css');
+@import url('./promo-first.css');
+@import url('./promo-three.css');
+@import url('./feedback.css');
+@import url('./form.css');
+@import url('./footer.css');
+
+* {
+    font-family: Helvetica Now Display Regular;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 80px;
+    margin: 0 auto;
+    max-width: 1600px;
+    min-width: 300px;
+
+}
+
+.container-border {
+    border: 10px solid #000;
+    border-radius: 60px;
+    padding-bottom: 20px;
+    background-color: #000;
+    border-bottom: none;
+    border-top:none;
+}
+
+.span-yellow{
+    color: #EAFC9C;
+}
+
+.span-grey{
+    color: #7A7A7A;
+}
+
+.background-purple {
+    background: #F1E0FD;
+}
+
+.background-white {
+    background: #fff;
+}
+
+.background-yellow {
+    background: #EAFC9C;
+}
+
+.background-blue {
+    background: #3943F5;
+}
+
+
+
+
+/* MEDIA */
+
+@media screen and (max-width: 680px) {
+    .container-border {
+        border-radius: 20px;
+        border: 5px solid #000;
+    }
+
+  
+}
+
+@media screen and (max-width: 680px) { 
+    .container-border {
+        padding-bottom: 0;
+    }
+}
+
+
+@media screen and (max-width: 680px) {
+
+    body {
+        padding: 0 10px;
+    }
+
+}
+
+@media screen and (max-width: 400px) {
+
+    body {
+        padding: 0 5px;
+    }
+
+}

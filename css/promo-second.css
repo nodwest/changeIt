@@ -1,0 +1,124 @@
+
+.promo-second {
+    padding-bottom: 40px;
+    position: relative;
+    z-index: 3;
+    color: #ffffff;
+    }
+    
+    .promo-second__title {
+        font-size: 110px;
+        line-height: 162px;
+        text-transform: uppercase;
+        margin-top: 275px;
+        margin-left: 145px;
+        z-index: 3;
+    }
+    
+    .promo-second__title span {
+        margin-left: 50px;
+    }
+    .promo-second__subtitle {
+        font-size: 110px;
+        line-height: 162px;
+        text-transform: uppercase;
+        margin-left: 695px;
+      
+    }
+      
+    .promo-second__img {
+        position: absolute;
+        top: 0;
+        transform: translateY(-123px) translateX(290px);
+        z-index: -1;
+    }
+    
+    .promo-second__img img {
+        max-width: 100%;
+    }
+
+
+
+
+
+/* MEDIA */
+
+
+@media screen and (max-width: 1485px) {
+
+    .promo-second {
+        display: flex;
+        flex-direction: column;
+        margin-top: 200px;
+       
+
+    }
+
+    .promo-second__title {
+        margin: 0;
+        align-self: center;
+    }
+
+    .promo-second__subtitle {
+        margin: 0;
+        align-self: flex-end;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+
+    .promo-second {
+        padding: 0 100px;
+        margin-top: 150px;
+    }
+    .promo-second__title {
+        font-size: 4rem;
+        line-height: normal;
+    }
+
+    .promo-second__subtitle {
+        font-size: 4rem;
+        line-height: normal;
+        margin-bottom: 40px;
+    }
+
+    .promo-second__img {
+        right: 0;
+        bottom: 0;
+        transform: translateY(-113px) translateX(-340px);
+      
+    }
+
+    .promo-second__img img {
+        width: 70%;
+    }
+
+}
+
+@media screen and (max-width: 960px) {
+    .promo-second {
+        margin-top: 80px;
+        padding: 0;
+    }
+    .promo-second__img {
+        display: none;
+    }
+
+    .promo-second__title span {
+        margin: 0;
+    }
+    .promo-second__subtitle {
+        align-self: center;
+        margin-bottom: 0;
+    }
+} 
+
+@media screen and (max-width: 680px) { 
+
+    .promo-second__title {
+        font-size: 2rem;
+    }
+    .promo-second__subtitle {
+        font-size: 2rem;
+    }
+}

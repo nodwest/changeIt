@@ -1,0 +1,65 @@
+.promo-three {
+    margin-top: 160px;
+    padding: 0 100px;
+}
+
+.promo-three-text {
+    font-size: 76px;
+    line-height: 112px;
+    color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+/* MEDIA */
+
+
+@media screen and (max-width: 1200px) {
+
+    .promo-three {
+        margin-top: 80px;
+        padding: 0 80px;
+        
+    }
+
+    .promo-three-text  {
+        font-size: 2rem;
+    }
+    
+}
+
+@media screen and (max-width: 1000px) {
+    .promo-three-text  {
+        font-size: 2rem;
+        line-height: normal;
+    }
+
+    .promo-three {
+        margin-top: 80px;
+        padding: 0 10px;
+        
+    }
+
+}
+
+@media screen and (max-width: 680px) {
+    .promo-three-text {
+        text-align: justify;
+    }
+
+}
+
+
+@media screen and (max-width: 500px) {
+    .promo-three-text {
+        font-size: 1rem;
+    }
+
+}

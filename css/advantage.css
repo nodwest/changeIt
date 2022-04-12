@@ -1,0 +1,133 @@
+/* advantage */
+.advantage-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    background-color: #000;;
+
+}
+
+.advantage__item {
+    background-color: #fff;
+    color: #000;
+    border-radius: 60px;
+    max-width: 470px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 120px;
+}
+
+.advantage__item__img {
+    max-width: 100%;
+    width: 194px;
+    height: 194px;
+}
+
+.advantage__item__title {
+    max-width: 220px;
+    font-size: 28px;
+    line-height: 41px;
+    text-align: center;
+}
+
+.advantage__item__subtitle {
+    max-width: 220px;
+    margin-top: 10px;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    
+} 
+
+
+
+
+
+/* MEDIA */
+
+
+
+@media screen and (max-width: 1300px) {
+    .advantage-container {
+        justify-content: space-around;
+    }
+    .advantage__item {
+        padding: 20px;
+    }
+    
+    .advantage__item__img {
+        width: 80%;
+    }
+}
+
+
+
+@media screen and (max-width: 1000px) {
+
+    .advantage__item {
+        padding: 10px;
+    }
+
+
+    
+}
+
+@media screen and (max-width: 915px) {
+
+    .advantage__item {
+        padding: 20px 100px;
+        min-height: 420px;
+        margin-top: 20px;
+    }
+
+    .advantage__item:first-child {
+        margin-top: 0;
+    }
+
+    .advantage-container {
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+}
+
+@media screen and (max-width: 915px) {
+
+    .advantage__item {
+        padding: 20px 60px;
+        min-height: 300px;
+        margin-top: 20px;
+    }
+
+    .advantage__item__img {
+        width: 60%;
+    }
+}
+
+
+@media screen and (max-width: 680px) {
+    .advantage__item {
+        border-radius: 20px;
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    .advantage__item {
+        padding: 10px 40px;
+        min-height: 250px;
+        margin-top: 20px;
+        height: auto;
+    }
+    .advantage__item__title {
+        font-size: 1rem;
+    }
+
+    .advantage__item__subtitle {
+        font-size: 0.8rem;
+    }
+}

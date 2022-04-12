@@ -1,0 +1,159 @@
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    padding-bottom: 30px;
+    margin-top: 80px;
+    padding: 0 90px;
+    padding-bottom: 30px;
+    border-radius: 50px;
+}
+
+
+.footer__text {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    font-size: 44px;
+    line-height: 105.9%;
+    margin-top: 40px;
+}
+
+
+.footer__email {
+    grid-column: 1/ 1;
+    grid-row: 2 / 3;
+    padding: 15px;
+    border: solid 1px #000;
+    border-radius: 10px;
+    background-color: inherit;
+    width: 500px;
+    height: 50px;
+    margin-top: 25px;
+
+}
+
+.footer__copyright {
+    grid-column: 1/ 1;
+    grid-row: 3 / 4;
+    margin-top: 50px;
+}
+
+.footer__menu {
+    grid-column: 2/3;
+    grid-row: -1/ -2;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin: 0;
+    align-self: end;
+    
+}
+
+.footer__menu a {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+}
+
+
+/* MEDIA */
+
+@media screen and (max-width: 1300px) {  
+
+    .footer {
+        grid-template-columns: auto auto ;
+    }
+    .footer__email {
+        width: 100%;
+    }
+}
+
+
+@media screen and (max-width: 1050px) {   
+    .footer {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+    }
+
+    .footer__text {
+        grid-column: 1 / -1;
+        grid-row: 1/2;
+    }
+
+    .footer__email {
+        grid-row: 2/ 3;
+        grid-column: 1 / -1;
+        margin-top: 20px;
+    }
+
+    .footer__menu {
+        grid-row: 3/4;
+        grid-column: 1 / -1;
+        margin-top: 20px;
+        padding-left: 0;
+    }
+
+    .footer__copyright {
+        grid-row: 4/ 5;
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+
+
+}
+
+@media screen and (max-width: 800px) { 
+
+    .footer {
+        padding: 0 20px;
+    }
+}   
+
+@media screen and (max-width: 650px) { 
+    .footer {
+        border-radius: 20px;
+        border: none;
+    }
+    .footer__menu {
+        flex-wrap: wrap;
+    }
+    .footer__menu a {
+        font-size: 1rem;
+    }
+    .footer__copyright { 
+        font-size: 1rem;
+    }
+
+}
+
+@media screen and (max-width: 680px) {  
+    .footer {
+        border-radius: 20px;
+    }
+    .footer__menu a {
+        font-size: 0.8rem;
+    }
+    .footer__menu {
+        justify-content: start;
+    }
+    .footer__menu  li{
+        padding: 0 10px;
+      
+       
+    }
+
+    .footer__text {
+        font-size: 1.3rem;
+    }
+    .footer__email {
+        font-size: 1rem;
+        padding: 5px;
+        height: auto;
+        border-radius: 20px;
+    }
+    .footer__email::placeholder {
+        font-size: 0.8rem;
+        text-align: center;
+        
+    }
+}

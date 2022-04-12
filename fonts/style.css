@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Helvetica Now Display';
+    src: local('Helvetica Now Display Extra Bold'), local('Helvetica-Now-Display-Extra-Bold'),
+        url('HelveticaNowDisplay-ExtraBold.woff2') format('woff2'),
+        url('HelveticaNowDisplay-ExtraBold.woff') format('woff'),
+        url('HelveticaNowDisplay-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+  }
