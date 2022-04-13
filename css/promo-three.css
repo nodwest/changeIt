@@ -9,24 +9,13 @@
     color: #fff;
 }
 
-
-
-
-
-
-
-
-
-
 /* MEDIA */
-
 
 @media screen and (max-width: 1200px) {
 
     .promo-three {
         margin-top: 80px;
         padding: 0 80px;
-        
     }
 
     .promo-three-text  {
@@ -44,22 +33,17 @@
     .promo-three {
         margin-top: 80px;
         padding: 0 10px;
-        
     }
-
 }
 
 @media screen and (max-width: 680px) {
     .promo-three-text {
         text-align: justify;
     }
-
 }
-
 
 @media screen and (max-width: 500px) {
     .promo-three-text {
         font-size: 1rem;
     }
-
 }
