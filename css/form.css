@@ -6,7 +6,7 @@
 
 .form-about {
     border-radius: 60px;
-    padding: 80px 80px 0 80px;
+    padding: 90px 80px 0 80px;
     height: 717px;
     position: relative;
 }
@@ -17,8 +17,8 @@
 
 .form-about__img {
     position: absolute;
-    bottom: 0px;
-    transform: translateY(55px) translateX(230px);
+    bottom: -4px;
+    left: 320px
 }
 
 .form-form { 
@@ -81,8 +81,7 @@
     font-size: 14px;
     line-height: 17px;
     color: #7A7A7A;
-    margin-top: 20px;
-    
+    margin-top: 20px; 
 }
 
 .form__description span {
@@ -100,12 +99,7 @@
     line-height: 29px;
     font-family: Helvetica Now Display Regular;
 }
-
-
-
-
 /* MEDIA */
-
 
 @media screen and (max-width: 1400px) { 
     .form {
@@ -132,9 +126,13 @@
     }
 
     .form-about__img {
-        transform: rotate(180deg) translateX(150px) translateY(135px);
+        transform: rotate(180deg) translateX(110px) translateY(170px);
         left: 50%;
         top: 0;
+    }
+
+    .form-about__img img {
+        width: 200px;
     }
 }
 
@@ -152,9 +150,7 @@
     }
 
     .form-form {
-    
         min-width: 200px;
-       
     }
     .form__submit {
         min-width: 100px;
@@ -166,7 +162,6 @@
     .form__submit {
         padding: 40px;
     }
-
 
     .form-about  {
         display: none;

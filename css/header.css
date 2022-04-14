@@ -10,7 +10,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
-  
+    align-items: top;
     padding: 0 90px;
 }
 
@@ -39,7 +39,7 @@
     justify-content: flex-end; 
     align-items: center;
     list-style-type: none;
-    margin: 0;
+   
 }
 
 .nav-menu__item {
@@ -126,8 +126,6 @@
         font-size: 4rem;
     }
 
- 
-
     .header-info__button{
         margin-top: 20px;
         grid-column: 1 / -1;
@@ -149,7 +147,6 @@
         position: absolute;
         bottom: 6px;
         right: 0;
-      
     }
 
     .nav-menu {
@@ -159,16 +156,12 @@
     .nav-menu__item {
         margin-right: 0;
     }
-
-    
 }
 
 @media screen and (max-width: 1290px) {
     .header__img {
        display: none;
     }
-
-
 
     .header-container {
         display: grid;
@@ -295,7 +288,6 @@
         text-align: justify;
     }  
 }
-
 
 @media screen and (max-width: 680px) {
    
