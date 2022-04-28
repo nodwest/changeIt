@@ -54,6 +54,19 @@ body {
     background: #3943F5;
 }
 
+.border-red {
+    border-color: red;
+}
+
+.border-green {
+    border-color: green
+}
+
+.error-input {
+    color: red;
+    text-align: center;
+}
+
 /* MEDIA */
 
 @media screen and (max-width: 680px) { 
