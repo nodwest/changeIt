@@ -27,7 +27,7 @@ export const ValidationName = (errorMessage, reg) => (event) => {
         event.target.classList.remove('border-green')
         event.target.classList.add('border-red')
         event.target.value = ''
-        errorDiv.innerHTML = err
+        errorDiv.innerText = err
 
         if (!isContaint) {
             event.target.after(errorDiv)
@@ -82,7 +82,6 @@ formInputs[4].addEventListener('click', (event) => {
             }
         }
     }
-
 })
 
 // SUBMIT FORM
