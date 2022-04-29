@@ -9,7 +9,6 @@
     border-radius: 50px;
 }
 
-
 .footer__text {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
@@ -17,7 +16,6 @@
     line-height: 106%;
     margin-top: 40px;
 }
-
 
 .footer__email {
     grid-column: 1/ 1;

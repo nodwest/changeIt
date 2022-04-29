@@ -244,6 +244,34 @@
       </button>
     </section>
 
+    <section class="form blog">
+      <div class="blog-answer">
+        <div class="blog__title">
+          Tell us how you change your life
+        </div>
+
+
+      </div>
+
+      <form id="blog" class="form-form background-white">
+        <div class="form__item">
+          <label class="form__label" for="blog_title"> Title</label>
+          <input class="form__input" type="text" name="blog_title"
+            id="blog_title" placeholder="Enter Your Title" />
+        </div>
+
+        <div class="form__item">
+          <label class="form__label" for="blog_text"> Text</label>
+          <input class="form__input" type="text" name="blog_text" id="blog_text"
+            placeholder="Enter Your Text" />
+        </div>
+
+        <input class="form__submit background-blue" type="submit"
+          value='Tell your story'>
+
+      </form>
+    </section>
+
     <section class="form">
       <div class="form-about background-yellow">
         <div class="form-about__text">Get your free Change.it checklist</div>
@@ -253,7 +281,7 @@
         </div>
       </div>
 
-      <form class="form-form background-white" action="">
+      <form id="form" class="form-form background-white">
         <div class="form__item">
           <label class="form__label" for="name"> First Name</label>
           <input class="form__input" type="text" name="name" id="name"
@@ -316,7 +344,8 @@
 
   </div>
 
-  <script src="./script.js"></script>
+  <script type="module" src="./js/form.js"></script>
+  <script type="module" src="./js/blog.js"></script>
 </body>
 
 </html>
