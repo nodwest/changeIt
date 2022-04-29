@@ -1,4 +1,6 @@
-
+.blog {
+    margin-top: 100px;
+}
 
 .blog__title {
     text-align: center;
@@ -31,8 +33,22 @@
     background-color: #fff;
 }
 
+.blog__search {
+    flex-grow: 2;
+}
+
 .blog__setting__el::placeholder {  
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
+}
+
+.blog-answer {
+    border-radius: 60px;
+    padding: 40px 20px;
+
+}
+
+.asnwer__item__date {
+    text-align: right;
 }

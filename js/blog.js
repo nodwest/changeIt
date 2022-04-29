@@ -1,6 +1,9 @@
 'use strict'
 
-import { ValidationName, errosMessage } from './form.js'
+import {
+    ValidationName,
+    errosMessage
+} from './form.js'
 
 const formBlog = document.getElementById('blog')
 const formBlogInputs = formBlog.getElementsByTagName('input')
@@ -22,10 +25,10 @@ const createNewPost = (post) => {
             </div>
 
             <div class="asnwer__item__text">
-                Decription : ${item.text}  
+                 ${item.text}  
             </div>
 
-            <div class="asnwer__item__text">
+            <div class="asnwer__item__date">
                 Date : ${item.date}  
             </div>
 
@@ -37,26 +40,29 @@ const createNewPost = (post) => {
 }
 
 const posts = [
-    {
-        title: 'New Live',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores repellat facere ut. Et, voluptatum nobis?',
-        date: '09/10/2018'
-    },
-    {
-        title: 'A My Live',
-        text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores repellat facere ut. Et, voluptatum nobis?',
-        date: '11/10/2018'
-    }
+    // {
+    //     title: 'New Live',
+    //     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores repellat facere ut. Et, voluptatum nobis?',
+    //     date: '09/10/2018'
+    // },
+    // {
+    //     title: 'A My Live',
+    //     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores repellat facere ut. Et, voluptatum nobis?',
+    //     date: '11/10/2018'
+    // }
 ]
 
 createNewPost(posts)
 
 const createNewPostObj = () => {
-    const date = new Date
+    const newDate = new Date().toDateString()
+    const dateParse = new Date().getTime()
+
     const post = {
         title: formBlog[0].value,
         text: formBlog[1].value,
-        date: date
+        date: newDate,
+        dateParse: dateParse
     }
     posts.push(post)
 }
@@ -74,11 +80,9 @@ inputSeach.addEventListener('input', (e) => {
     if (e.target.value == '') {
         removeAnswers()
         createNewPost(posts)
-    }
-
-    else {
+    } else {
         const filterPost = posts.filter(item => {
-            if (item.title.toLowerCase().indexOf(e.target.value) != -1) {
+            if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
                 return item
             }
         })
@@ -92,19 +96,6 @@ let flag = true
 const btnSortAbc = document.querySelector('.sort-abc')
 btnSortAbc.addEventListener('click', () => {
 
-    const filterABC = posts.sort((a, b) => {
-
-        if (a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
-            return -1
-        }
-        if (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase()) {
-            return 1
-        }
-        return 0
-    })
-
-    // removeAnswers()
-    // createNewPost(filterABC)
     if (flag) {
         const filterABC = posts.sort((a, b) => {
 
@@ -116,12 +107,9 @@ btnSortAbc.addEventListener('click', () => {
             }
             return 0
         })
-
         removeAnswers()
         createNewPost(filterABC)
-    }
-
-    else {
+    } else {
         const filterCBA = posts.sort((a, b) => {
 
             if (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase()) {
@@ -139,6 +127,26 @@ btnSortAbc.addEventListener('click', () => {
     flag = !flag
 })
 
+//SORT DATE 
+const btnSortDate = document.querySelector('.sort-date')
+btnSortDate.addEventListener('click', () => {
+    if (flag) {
+        const filterDate = posts.sort((a, b) => {
+            return  a.dateParse - b.dateParse
+        })
+        removeAnswers()
+        createNewPost(filterDate)
+    } else {
+        const filterDate = posts.sort((a, b) => {
+            return  b.dateParse - a.dateParse
+        })
+        removeAnswers()
+        createNewPost(filterDate)
+    }
+    
+    flag = !flag
+})
+
 // ADD NEW POST
 formBlogInputs[2].addEventListener('click', (e) => {
     e.preventDefault()
@@ -149,8 +157,7 @@ formBlogInputs[2].addEventListener('click', (e) => {
 
             if (formBlog[i].value == '') {
                 formBlog[i].classList.add('border-red')
-            }
-            else if (formBlog[i].value != '') {
+            } else if (formBlog[i].value != '') {
                 ++count
             }
             if (count == formBlog.length - 1) {
