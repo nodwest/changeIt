@@ -88,8 +88,8 @@ formInputs[4].addEventListener('click', (event) => {
 const submit = (e) => {
     e.preventDefault();
     const formData = new FormData(form);
-    for (let pair of formData.entries()) {
-        console.log(pair)
+    for (let data of formData.entries()) {
+        console.log(data)
     }
 }
 

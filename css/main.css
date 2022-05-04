@@ -68,6 +68,11 @@ body {
     text-align: center;
 }
 
+.active-focus:active , .active-focus:focus {
+    background-color: #3943F5;
+    color: #fff;
+}
+
 /* MEDIA */
 
 @media screen and (max-width: 680px) { 

@@ -1,9 +1,6 @@
 'use strict'
 
-import {
-    ValidationName,
-    errosMessage
-} from './form.js'
+import { ValidationName, errosMessage } from './form.js'
 
 const formBlog = document.getElementById('blog')
 const formBlogInputs = formBlog.getElementsByTagName('input')
@@ -15,13 +12,11 @@ formBlogInputs[1].addEventListener('change', ValidationName(errosMessage[5], reg
 const createNewPost = (post) => {
     const newPosts = document.createElement('div')
     newPosts.classList.add('asnwer')
-
     post.forEach(item => {
-
         newPosts.innerHTML += `
         <div class="asnwer__item">
             <div class="asnwer__item__title">
-                ${item.title}  
+                ${item.title}   
             </div>
 
             <div class="asnwer__item__text">
@@ -31,29 +26,23 @@ const createNewPost = (post) => {
             <div class="asnwer__item__date">
                 Date : ${item.date}  
             </div>
-
         </div>
         `
     });
-
     document.querySelector('.blog-answer-field').append(newPosts)
 }
+const posts = []
+let filterPosts = []
+let localArray = []
 
-const posts = [
-    // {
-    //     title: 'New Live',
-    //     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores repellat facere ut. Et, voluptatum nobis?',
-    //     date: '09/10/2018'
-    // },
-    // {
-    //     title: 'A My Live',
-    //     text: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores repellat facere ut. Et, voluptatum nobis?',
-    //     date: '11/10/2018'
-    // }
-]
-
-createNewPost(posts)
-
+class Blog {
+    constructor(option) {
+        this.posts = option.posts
+        this.inputSearch = option.inputSearch
+        this.sortAbc = option.sortAbc
+        this.sortDate = option.sortDate
+    }
+}
 const createNewPostObj = () => {
     const newDate = new Date().toDateString()
     const dateParse = new Date().getTime()
@@ -74,30 +63,93 @@ const removeAnswers = () => {
         answer.remove()
     }
 }
+// Сreate a new comparison object 
+const createNewObjToLocal = () => {
+    return {
+        posts: filterPosts,
+        inputSearch: document.querySelector('.blog__search').value,
+        sortAbc: flagABC,
+        sortDate: flagDate,
+    }
+}
+
 // Search Post
 const inputSeach = document.querySelector('.blog__search')
 inputSeach.addEventListener('input', (e) => {
     if (e.target.value == '') {
         removeAnswers()
         createNewPost(posts)
-    } else {
-        const filterPost = posts.filter(item => {
-            if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
-                return item
+        filterPosts = [...posts]
+    }
+
+    else {
+        const comparisonObj = createNewObjToLocal()
+
+        for (let i = 0; i < localArray.length; i++) {
+            console.log('LocalArray item =>', JSON.stringify(localArray[i] ))
+            console.log('comparisonObj OBJ =>', JSON.stringify(comparisonObj))
+            if (JSON.stringify(localArray[i]) == JSON.stringify(comparisonObj)) {
+                filterPosts = localArray[i].posts
+                break
             }
-        })
+            else {
+                filterPosts = posts.filter(item => {
+                    if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
+                        console.log('Нет')
+                        return item
+                    }
+                })
+                break
+            }
+        }
         removeAnswers()
-        createNewPost(filterPost)
+        createNewPost(filterPosts)
+
     }
 })
 
+// SAVE TO LOCAL STORAGE
+inputSeach.addEventListener('change', () => {
+    const comparisonObj = createNewObjToLocal()
+
+    if (localStorage.getItem('arrayPosts') !== null) {
+        localArray = JSON.parse(localStorage.getItem('arrayPosts'))
+    }
+
+    if (localArray.length == 0) {
+        localArray.push(
+            new Blog(comparisonObj)
+        )
+    }
+
+    for (let i = 0; i < localArray.length; i++) {
+        if (JSON.stringify(comparisonObj) == JSON.stringify(localArray[i])) {
+            break
+        }
+
+        else if (i + 1 == localArray.length) {
+            localArray.push(
+                new Blog(comparisonObj)
+            )
+            break
+        }
+    }
+
+    localStorage.removeItem('arrayPosts')
+    localStorage.setItem('arrayPosts', JSON.stringify(localArray))
+    // console.log(JSON.parse(localStorage.getItem('arrayPosts')))
+    console.log('localArray => ', localArray)
+    // console.log(comparisonObj)
+})
+
 // Sort ABC 
-let flag = true
+let flagABC = false
+let flagDate = false
 const btnSortAbc = document.querySelector('.sort-abc')
 btnSortAbc.addEventListener('click', () => {
 
-    if (flag) {
-        const filterABC = posts.sort((a, b) => {
+    if (flagABC) {
+        const filterABC = filterPosts.sort((a, b) => {
 
             if (a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
                 return -1
@@ -109,8 +161,9 @@ btnSortAbc.addEventListener('click', () => {
         })
         removeAnswers()
         createNewPost(filterABC)
+
     } else {
-        const filterCBA = posts.sort((a, b) => {
+        const filterCBA = filterPosts.sort((a, b) => {
 
             if (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase()) {
                 return -1
@@ -123,28 +176,26 @@ btnSortAbc.addEventListener('click', () => {
         removeAnswers()
         createNewPost(filterCBA)
     }
-
-    flag = !flag
+    flagABC = !flagABC
 })
 
 //SORT DATE 
 const btnSortDate = document.querySelector('.sort-date')
 btnSortDate.addEventListener('click', () => {
-    if (flag) {
-        const filterDate = posts.sort((a, b) => {
-            return  a.dateParse - b.dateParse
+    if (flagDate) {
+        const filterDate = filterPosts.sort((a, b) => {
+            return a.dateParse - b.dateParse
         })
         removeAnswers()
         createNewPost(filterDate)
     } else {
-        const filterDate = posts.sort((a, b) => {
-            return  b.dateParse - a.dateParse
+        const filterDate = filterPosts.sort((a, b) => {
+            return b.dateParse - a.dateParse
         })
         removeAnswers()
         createNewPost(filterDate)
     }
-    
-    flag = !flag
+    flagDate = !flagDate
 })
 
 // ADD NEW POST
@@ -157,15 +208,17 @@ formBlogInputs[2].addEventListener('click', (e) => {
 
             if (formBlog[i].value == '') {
                 formBlog[i].classList.add('border-red')
-            } else if (formBlog[i].value != '') {
+            }
+            else if (formBlog[i].value != '') {
                 ++count
             }
-            if (count == formBlog.length - 1) {
-                createNewPostObj()
-                removeAnswers()
-                createNewPost(posts)
-                break
-            }
         }
+    }
+
+    if (count == formBlog.length - 1) {
+        createNewPostObj()
+        removeAnswers()
+        createNewPost(posts)
+        filterPosts = [...posts]
     }
 })
