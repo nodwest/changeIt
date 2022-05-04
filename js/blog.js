@@ -35,14 +35,6 @@ const posts = []
 let filterPosts = []
 let localArray = []
 
-class Blog {
-    constructor(option) {
-        this.posts = option.posts
-        this.inputSearch = option.inputSearch
-        this.sortAbc = option.sortAbc
-        this.sortDate = option.sortDate
-    }
-}
 const createNewPostObj = () => {
     const newDate = new Date().toDateString()
     const dateParse = new Date().getTime()
@@ -63,6 +55,15 @@ const removeAnswers = () => {
         answer.remove()
     }
 }
+
+class Blog {
+    constructor(option) {
+        this.posts = option.posts
+        this.inputSearch = option.inputSearch
+        this.sortAbc = option.sortAbc
+        this.sortDate = option.sortDate
+    }
+}
 // Сreate a new comparison object 
 const createNewObjToLocal = () => {
     return {
@@ -75,36 +76,32 @@ const createNewObjToLocal = () => {
 
 // Search Post
 const inputSeach = document.querySelector('.blog__search')
+
 inputSeach.addEventListener('input', (e) => {
+    let comparisonObj = []
+
     if (e.target.value == '') {
         removeAnswers()
         createNewPost(posts)
         filterPosts = [...posts]
     }
-
     else {
-        const comparisonObj = createNewObjToLocal()
-
-        for (let i = 0; i < localArray.length; i++) {
-            console.log('LocalArray item =>', JSON.stringify(localArray[i] ))
-            console.log('comparisonObj OBJ =>', JSON.stringify(comparisonObj))
-            if (JSON.stringify(localArray[i]) == JSON.stringify(comparisonObj)) {
-                filterPosts = localArray[i].posts
-                break
+        filterPosts = posts.filter(item => {
+            if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
+                return item
             }
-            else {
-                filterPosts = posts.filter(item => {
-                    if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
-                        console.log('Нет')
-                        return item
-                    }
-                })
+        })
+        comparisonObj = createNewObjToLocal()
+        
+        for (let i = 0; i < localArray.length; i++) {   
+            if  (JSON.stringify(comparisonObj) == JSON.stringify(localArray[i])) {
+                 console.log('Сработал кэш')
+                filterPosts = localArray[i].posts
                 break
             }
         }
         removeAnswers()
         createNewPost(filterPosts)
-
     }
 })
 
@@ -126,7 +123,6 @@ inputSeach.addEventListener('change', () => {
         if (JSON.stringify(comparisonObj) == JSON.stringify(localArray[i])) {
             break
         }
-
         else if (i + 1 == localArray.length) {
             localArray.push(
                 new Blog(comparisonObj)
@@ -134,12 +130,8 @@ inputSeach.addEventListener('change', () => {
             break
         }
     }
-
     localStorage.removeItem('arrayPosts')
     localStorage.setItem('arrayPosts', JSON.stringify(localArray))
-    // console.log(JSON.parse(localStorage.getItem('arrayPosts')))
-    console.log('localArray => ', localArray)
-    // console.log(comparisonObj)
 })
 
 // Sort ABC 
@@ -219,6 +211,6 @@ formBlogInputs[2].addEventListener('click', (e) => {
         createNewPostObj()
         removeAnswers()
         createNewPost(posts)
-        filterPosts = [...posts]
+      
     }
 })
