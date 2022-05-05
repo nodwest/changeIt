@@ -27,7 +27,6 @@ export const ValidationName = (errorMessage, reg) => (event) => {
         event.target.classList.add('border-red')
         event.target.value = ''
         errorDiv.innerText = err
-
         if (!isContaint) {
             event.target.after(errorDiv)
         }
@@ -37,7 +36,6 @@ export const ValidationName = (errorMessage, reg) => (event) => {
         event.target.classList.remove('border-red')
         event.target.classList.add('border-green')
         event.target.value = event.target.value[0].toUpperCase() + event.target.value.slice(1)
-
         if (isContaint) {
             event.target.nextElementSibling.remove()
         }
@@ -53,7 +51,6 @@ export const ValidationName = (errorMessage, reg) => (event) => {
 
     // Date Validation
     if (event.target.name == 'date') {
-
         let date = event.target.value
         date = date.slice(6) + '-' + date.slice(3, 5) + '-' + date.slice(0, 2)
         date = Date.parse(date).toString().slice(0, 5)
@@ -73,7 +70,6 @@ formInputs[3].addEventListener('change', ValidationName(errosMessage[3], regDate
 formInputs[4].addEventListener('click', (event) => {
     for (let i = 0; i < formInputs.length; i++) {
         if (formInputs[i].getAttribute('type') != 'submit') {
-
             if (formInputs[i].value == '') {
                 formInputs[i].classList.add('border-red')
                 event.preventDefault()

@@ -38,7 +38,6 @@ let localArray = []
 const createNewPostObj = () => {
     const newDate = new Date().toDateString()
     const dateParse = new Date().getTime()
-
     const post = {
         title: formBlog[0].value,
         text: formBlog[1].value,
@@ -55,7 +54,6 @@ const removeAnswers = () => {
         answer.remove()
     }
 }
-
 class Blog {
     constructor(option) {
         this.posts = option.posts
@@ -73,10 +71,8 @@ const createNewObjToLocal = () => {
         sortDate: flagDate,
     }
 }
-
 // Search Post
 const inputSeach = document.querySelector('.blog__search')
-
 inputSeach.addEventListener('input', (e) => {
 
     if (e.target.value == '') {
@@ -86,7 +82,6 @@ inputSeach.addEventListener('input', (e) => {
     }
 
     else {
-
         filterPosts = posts.filter(item => {
             if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
                 return item
@@ -181,7 +176,8 @@ btnSortDate.addEventListener('click', () => {
         })
         removeAnswers()
         createNewPost(filterDate)
-    } else {
+    }
+    else {
         const filterDate = filterPosts.sort((a, b) => {
             return b.dateParse - a.dateParse
         })
