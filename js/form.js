@@ -15,7 +15,6 @@ export const errosMessage = [
     'The date must be in the form DD/MM/YYYY',
     'Your title must not start with numbers',
     'The string length can be from 3 to 100 characters'
-
 ]
 
 export const ValidationName = (errorMessage, reg) => (event) => {
@@ -72,7 +71,6 @@ formInputs[2].addEventListener('change', ValidationName(errosMessage[2], regEmai
 formInputs[3].addEventListener('change', ValidationName(errosMessage[3], regDate))
 
 formInputs[4].addEventListener('click', (event) => {
-    // for (input of formInputs) 
     for (let i = 0; i < formInputs.length; i++) {
         if (formInputs[i].getAttribute('type') != 'submit') {
 
