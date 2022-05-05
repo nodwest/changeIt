@@ -84,19 +84,19 @@ inputSeach.addEventListener('input', (e) => {
         createNewPost(posts)
         filterPosts = [...posts]
     }
-   
+
     else {
-       
-            filterPosts = posts.filter(item => {
-                if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
-                    return item
-                }
-            })
-        
-       const comparisonObj = createNewObjToLocal()
-        
-        for (let i = 0; i < localArray.length; i++) {   
-            if  (JSON.stringify(comparisonObj) == JSON.stringify(localArray[i])) {
+
+        filterPosts = posts.filter(item => {
+            if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
+                return item
+            }
+        })
+
+        const comparisonObj = createNewObjToLocal()
+
+        for (let i = 0; i < localArray.length; i++) {
+            if (JSON.stringify(comparisonObj) == JSON.stringify(localArray[i])) {
                 filterPosts = localArray[i].posts
                 break
             }
