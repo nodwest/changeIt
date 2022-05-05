@@ -86,18 +86,17 @@ inputSeach.addEventListener('input', (e) => {
     }
    
     else {
-        if (localArray.length == 0) {
+       
             filterPosts = posts.filter(item => {
                 if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
                     return item
                 }
             })
-        }
+        
        const comparisonObj = createNewObjToLocal()
         
         for (let i = 0; i < localArray.length; i++) {   
             if  (JSON.stringify(comparisonObj) == JSON.stringify(localArray[i])) {
-                 console.log('Сработал кэш')
                 filterPosts = localArray[i].posts
                 break
             }
