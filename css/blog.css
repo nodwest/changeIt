@@ -52,4 +52,7 @@
     text-align: right;
 }
 
+.form__submit {
+    cursor: pointer;
+}
 

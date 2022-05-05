@@ -1,15 +1,15 @@
 'use strict'
 
-import { ValidationName, errosMessage } from './form.js'
+import { validate, errorsMessage } from './form.js'
 
 const formBlog = document.getElementById('blog')
 const formBlogInputs = formBlog.getElementsByTagName('input')
 const regTitle = /[a-zA-Zа-яА-Я]{3,25}/
 const regText = /[a-zA-Zа-яА-Я]{3,100}/
-formBlogInputs[0].addEventListener('change', ValidationName(errosMessage[4], regTitle))
-formBlogInputs[1].addEventListener('change', ValidationName(errosMessage[5], regText))
+formBlogInputs[0].addEventListener('change', validate(errorsMessage.errorTitle, regTitle))
+formBlogInputs[1].addEventListener('change', validate(errorsMessage.errorStringLength, regText))
 
-const createNewPost = (post) => {
+const renderPost = (post) => {
     const newPosts = document.createElement('div')
     newPosts.classList.add('asnwer')
     post.forEach(item => {
@@ -54,14 +54,14 @@ const removeAnswers = () => {
         answer.remove()
     }
 }
-class Blog {
-    constructor(option) {
-        this.posts = option.posts
-        this.inputSearch = option.inputSearch
-        this.sortAbc = option.sortAbc
-        this.sortDate = option.sortDate
-    }
-}
+// class Blog {
+//     constructor(option) {
+//         this.posts = option.posts
+//         this.inputSearch = option.inputSearch
+//         this.sortAbc = option.sortAbc
+//         this.sortDate = option.sortDate
+//     }
+// }
 // Сreate a new comparison object 
 const createNewObjToLocal = () => {
     return {
@@ -75,9 +75,9 @@ const createNewObjToLocal = () => {
 const inputSeach = document.querySelector('.blog__search')
 inputSeach.addEventListener('input', (e) => {
 
-    if (e.target.value == '') {
+    if (e.target.value === '') {
         removeAnswers()
-        createNewPost(posts)
+        renderPost(posts)
         filterPosts = [...posts]
     }
 
@@ -91,13 +91,14 @@ inputSeach.addEventListener('input', (e) => {
         const comparisonObj = createNewObjToLocal()
 
         for (let i = 0; i < localArray.length; i++) {
+            
             if (JSON.stringify(comparisonObj) == JSON.stringify(localArray[i])) {
                 filterPosts = localArray[i].posts
                 break
             }
         }
         removeAnswers()
-        createNewPost(filterPosts)
+        renderPost(filterPosts)
     }
 })
 
@@ -109,19 +110,19 @@ inputSeach.addEventListener('change', () => {
         localArray = JSON.parse(localStorage.getItem('arrayPosts'))
     }
 
-    if (localArray.length == 0) {
+    if (localArray.length === 0) {
         localArray.push(
-            new Blog(comparisonObj)
+            createNewObjToLocal()
         )
     }
 
     for (let i = 0; i < localArray.length; i++) {
-        if (JSON.stringify(comparisonObj) == JSON.stringify(localArray[i])) {
+        if (JSON.stringify(comparisonObj) === JSON.stringify(localArray[i])) {
             break
         }
-        else if (i + 1 == localArray.length) {
+        else if (i + 1 === localArray.length) {
             localArray.push(
-                new Blog(comparisonObj)
+                createNewObjToLocal()
             )
             break
         }
@@ -138,7 +139,6 @@ btnSortAbc.addEventListener('click', () => {
 
     if (flagABC) {
         const filterABC = filterPosts.sort((a, b) => {
-
             if (a.title.toLocaleLowerCase() < b.title.toLocaleLowerCase()) {
                 return -1
             }
@@ -148,11 +148,10 @@ btnSortAbc.addEventListener('click', () => {
             return 0
         })
         removeAnswers()
-        createNewPost(filterABC)
+        renderPost(filterABC)
 
     } else {
         const filterCBA = filterPosts.sort((a, b) => {
-
             if (a.title.toLocaleLowerCase() > b.title.toLocaleLowerCase()) {
                 return -1
             }
@@ -162,7 +161,7 @@ btnSortAbc.addEventListener('click', () => {
             return 0
         })
         removeAnswers()
-        createNewPost(filterCBA)
+        renderPost(filterCBA)
     }
     flagABC = !flagABC
 })
@@ -175,14 +174,13 @@ btnSortDate.addEventListener('click', () => {
             return a.dateParse - b.dateParse
         })
         removeAnswers()
-        createNewPost(filterDate)
-    }
-    else {
+        renderPost(filterDate)
+    } else {
         const filterDate = filterPosts.sort((a, b) => {
             return b.dateParse - a.dateParse
         })
         removeAnswers()
-        createNewPost(filterDate)
+        renderPost(filterDate)
     }
     flagDate = !flagDate
 })
@@ -190,24 +188,19 @@ btnSortDate.addEventListener('click', () => {
 // ADD NEW POST
 formBlogInputs[2].addEventListener('click', (e) => {
     e.preventDefault()
-    let count = 0;
+    let isNotEmptyInput = true;
     for (let i = 0; i < formBlog.length; i++) {
-
         if (formBlog[i].getAttribute('type') != 'submit') {
-
-            if (formBlog[i].value == '') {
+            if (formBlog[i].value === '') {
                 formBlog[i].classList.add('border-red')
-            }
-            else if (formBlog[i].value != '') {
-                ++count
+                isNotEmptyInput = false
             }
         }
     }
-
-    if (count == formBlog.length - 1) {
+    if (isNotEmptyInput) {
         createNewPostObj()
         removeAnswers()
-        createNewPost(posts)
-
+        renderPost(posts)
+        filterPosts = [...posts]
     }
 })
