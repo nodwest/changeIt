@@ -54,14 +54,6 @@ const removeAnswers = () => {
         answer.remove()
     }
 }
-// class Blog {
-//     constructor(option) {
-//         this.posts = option.posts
-//         this.inputSearch = option.inputSearch
-//         this.sortAbc = option.sortAbc
-//         this.sortDate = option.sortDate
-//     }
-// }
 // Сreate a new comparison object 
 const createNewObjToLocal = () => {
     return {
