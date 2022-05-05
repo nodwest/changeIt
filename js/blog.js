@@ -78,20 +78,22 @@ const createNewObjToLocal = () => {
 const inputSeach = document.querySelector('.blog__search')
 
 inputSeach.addEventListener('input', (e) => {
-    let comparisonObj = []
 
     if (e.target.value == '') {
         removeAnswers()
         createNewPost(posts)
         filterPosts = [...posts]
     }
+   
     else {
-        filterPosts = posts.filter(item => {
-            if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
-                return item
-            }
-        })
-        comparisonObj = createNewObjToLocal()
+        if (localArray.length == 0) {
+            filterPosts = posts.filter(item => {
+                if (item.title.toLowerCase().indexOf(e.target.value.toLocaleLowerCase()) != -1) {
+                    return item
+                }
+            })
+        }
+       const comparisonObj = createNewObjToLocal()
         
         for (let i = 0; i < localArray.length; i++) {   
             if  (JSON.stringify(comparisonObj) == JSON.stringify(localArray[i])) {
@@ -211,6 +213,6 @@ formBlogInputs[2].addEventListener('click', (e) => {
         createNewPostObj()
         removeAnswers()
         createNewPost(posts)
-      
+
     }
 })

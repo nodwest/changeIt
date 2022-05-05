@@ -92,7 +92,6 @@ const submit = (e) => {
         console.log(data)
     }
 }
-
 form.addEventListener('submit', submit)
 
 
